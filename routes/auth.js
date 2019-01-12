@@ -4,18 +4,18 @@ const router = express.Router();
 const UserAuthCont = require("../controllers/user.auth.cont");
 
 router.post("/signup", (req, res, next) => {
-  if (!req.body.email || !req.body.username || !req.body.password) {
+  if (!req.body.email || !req.body.password) {
     return next({
       message: "All fields are required.",
       status: 400
     });
   }
-  const currenthost="http://"+req.headers.host;
-  UserAuthCont.register(currenthost,req.body)
+  
+  UserAuthCont.register(req.body)
     .then(data => {
       return res.json({
         message:
-          "please confirm your email to login,\n an confirmation link sent to your registered mail ID."
+          "You can now login."
       });
     })
     .catch(error => {
@@ -23,7 +23,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 router.post("/login", (req, res, next) => {
-  if (!req.body.username || !req.body.password) {
+  if (!req.body.email || !req.body.password) {
     return next({
       message: "All fields are required.",
       status: 400

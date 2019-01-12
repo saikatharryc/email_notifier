@@ -3,11 +3,6 @@ const beautifyUnique = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt-nodejs");
 
 const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique:true
-  },
   password: {
     type: String,
     select: false,
@@ -46,7 +41,7 @@ UserSchema.pre("save", function(next) {
 
 UserSchema.methods.comparePassword = function(pass, cb) {
   //as password field property has select is false
-  Users.findOne({ _id: this._id,emailVerified:true })
+  Users.findOne({ _id: this._id })
     .select("_id")
     .select("+password")
     .exec()
