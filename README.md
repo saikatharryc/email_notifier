@@ -8,7 +8,7 @@
 ### Steps:
     * `npm i` // installs all dependency
     * `npm start` with below `ENV` vars:
-        ```
+```
  REDIS_HOST = ****'
 REDIS_PORT = ******
 SMTP_PASS="*****"
