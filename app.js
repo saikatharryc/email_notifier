@@ -42,6 +42,7 @@ require('./helpers/bull.helper');
 app.get('/shortly/:linkId', pxl.redirect)
 app.pxl = pxl;
 app.use('/static', express.static('public',{etag:false,maxAge:'1s'}))
+
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   // res.locals.message = err.message;

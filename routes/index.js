@@ -5,6 +5,7 @@ var authRoute = require("./auth");
 var authEnabledRoutes = require("./authenticatedRoute");
 const emailList = require('./emailList');
 const campaign = require('./campaign');  
+const stats = require('./stats');
 
 const api = {};
 const isAuth = (req,res,next) => {
@@ -42,6 +43,7 @@ api.includeRoutes = app => {
   app.use("/apis/*", isAuth); //authenticated routes
   app.use('/apis/emailList',emailList);
   app.use('/apis/campaign',campaign);
+  app.use('/apis/stats',stats);
   app.use("/apis/authEnabled", authEnabledRoutes);
 };
 

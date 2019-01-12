@@ -1,5 +1,6 @@
 let PxlForEmails = require("pxl-for-emails");
 const { bullSystem } = require("./bull.helper");
+const config = require('../config')
 
 function pushtobull(pxl, campaigDetails) {
   if (campaigDetails) {
@@ -13,7 +14,7 @@ function pushtobull(pxl, campaigDetails) {
           }
         });
         const link = await pxl.shorten(
-          "https://b8179d42.ngrok.io/static/tracker.png"
+          config.API_BASE+"/static/tracker.png"
         );
         const metadata = {
           link:link.linkId,
@@ -30,9 +31,9 @@ function pushtobull(pxl, campaigDetails) {
         const createdPxlClick = await pxl.createPxl(metadataClick);
         let emailMarkup =
           campaigDetails.template +
-          `<footer><img src='https://b8179d42.ngrok.io/shortly/${
+          `<footer><img src='${config.API_BASE}/shortly/${
             link.linkId
-          }?pxl=${createdPxl.pxl}' /><footer><a href='https://b8179d42.ngrok.io/shortly/${
+          }?pxl=${createdPxl.pxl}' /><footer><a href='${config.API_BASE}/shortly/${
             link.linkId
           }?pxl=${createdPxlClick.pxl}'>click me</a></footer>`;
         emailMarkup = await pxlForEmails.addTracking(emailMarkup,{recipient: i});

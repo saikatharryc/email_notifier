@@ -6,16 +6,17 @@ const config = {
     OPTIONS: { useNewUrlParser: true }
   },
   JWT: {
-    secret: "uyg2hx3ub3iuzoxuo",
+    secret: process.env.JWT_SEC,
     expire: 3600
   },
   MAIL:{
-    smtp_host:"smtp.gmail.com",
-		user:"startsetteam",
-		pass:"saikat95"
+    smtp_host:process.env.SMTP_HOST,
+		user:process.env.SMTP_USER,
+		pass:process.env.SMTP_PASS
   },
-  redisHost: '35.161.9.16',
-  redisPort: 30645
+  redisHost: process.env.REDIS_HOST,
+  redisPort: process.env.REDIS_PORT,
+  API_BASE:process.env.API_BASE
 };
 Object.freeze(config);
 module.exports = config;
