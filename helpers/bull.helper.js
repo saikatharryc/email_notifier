@@ -10,13 +10,35 @@ bullSystem.initBull = function() {
 
   bullSystem.bullJobs = queue;
 
-  bullSystem.addJob = (name, data, { attempts = 3, delay = 0, timeout = 120000, backOffDelay = 10000, jobId } = {}) => {
+  bullSystem.addJob = (name, data, { attempts = 3,delay = 0, timeout = 120000, backOffDelay = 10000, jobId } = {}) => {
     const jobOptions = {
       attempts,
       backoff: { type: 'fixed', delay: backOffDelay },
       delay,
       timeout,
       removeOnComplete,
+      jobId,
+    };
+    return queue.add(name, data, jobOptions);
+  };
+
+  bullSystem.addCronJob = (name, data, { attempts = 3,delay = 0, timeout = 120000, backOffDelay = 10000, jobId } = {}) => {
+    let jobOptions;
+    let repeat={}
+    if(data.frequency =="daily"){
+      repeat.cron = "0 0 * * *"
+    }else if("weekly"){
+      repeat.cron = "0 0 * * 0"
+    }else{
+      repeat.cron="0 0 1 * *"
+    }
+    jobOptions = {
+      repeat:repeat,
+      attempts,
+      backoff: { type: 'fixed', delay: backOffDelay },
+      delay,
+      timeout,
+      removeOnComplete:false,
       jobId,
     };
     return queue.add(name, data, jobOptions);

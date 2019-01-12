@@ -43,9 +43,11 @@ function pushtobull(pxl, campaigDetails) {
           subject: "New Update!",
           html: emailMarkup
         };
-        bullSystem.addJob("send_email", {
-          email: mailOptions
-        });
+        bullSystem.addCronJob("send_email", {
+          email: mailOptions,
+          timePeriod:campaigDetails.timePeriod,
+          frequency:campaigDetails.frequency
+        },campaigDetails.frequency);
         resolve();
       }
     });
