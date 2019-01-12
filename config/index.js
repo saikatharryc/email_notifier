@@ -10,9 +10,9 @@ const config = {
     expire: 3600
   },
   MAIL:{
-    user:"qh2vd6pk2sf6goa4@ethereal.email",
-    pass:"xM26V8waGjpWruHpSB",
-    smtp_host:"smtp.ethereal.email"
+    smtp_host:"smtp.gmail.com",
+		user:"startsetteam",
+		pass:"saikat95"
   },
   redisHost: '35.161.9.16',
   redisPort: 30645

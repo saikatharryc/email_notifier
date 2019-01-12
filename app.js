@@ -15,7 +15,12 @@ app.use(cors());
 
 const config = require('./config');
 
-let pxl = new Pxl();
+let pxl = new Pxl({
+  collectionPxls: 'pxls', 
+  collectionLinks: 'links', 
+  alwaysShortenWithNewLinkId: true 
+});
+
 mongoose.connect(
   config.MONGO.URI,
   config.MONGO.OPTIONS
@@ -34,10 +39,9 @@ app.use(pxl.trackPxl)
 
 apiRoutes.includeRoutes(app);
 require('./helpers/bull.helper');
-require('./controllers/capmaign.cont')(pxl);
 app.get('/shortly/:linkId', pxl.redirect)
-
-
+app.pxl = pxl;
+app.use('/static', express.static('public',{etag:false,maxAge:'1s'}))
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   // res.locals.message = err.message;

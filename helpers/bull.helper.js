@@ -1,6 +1,8 @@
 const Bull = require('bull');
 const Config = require('../config')
 const bullSystem = {};
+let removeOnComplete = true;
+
 
 bullSystem.initBull = function() {
   console.log('Bull redis', Config.redisHost , Config.redisPort);
@@ -26,7 +28,7 @@ bullSystem.initBull = function() {
 
   queue.on('active', job => {
     // log worker start
-    // console.log("Worker active", job);
+    console.log("Worker active", job);
   });
 
   queue.on('completed', (job, result) => {
