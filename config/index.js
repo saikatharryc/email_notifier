@@ -13,7 +13,9 @@ const config = {
     user:"qh2vd6pk2sf6goa4@ethereal.email",
     pass:"xM26V8waGjpWruHpSB",
     smtp_host:"smtp.ethereal.email"
-  }
+  },
+  redisHost: '35.161.9.16',
+  redisPort: 30645
 };
 Object.freeze(config);
 module.exports = config;

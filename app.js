@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
+const Pxl = require('pxl-mongodb');
 
 const apiRoutes = require('./routes');
 
@@ -14,10 +15,13 @@ app.use(cors());
 
 const config = require('./config');
 
+let pxl = new Pxl();
 mongoose.connect(
   config.MONGO.URI,
   config.MONGO.OPTIONS
 );
+pxl.connect(config.MONGO.URI)
+
 
 // enable the use of request body parsing middleware
 app.use(bodyParser.json());
@@ -26,7 +30,13 @@ app.use(
     extended: true,
   })
 );
+app.use(pxl.trackPxl)
+
 apiRoutes.includeRoutes(app);
+require('./helpers/bull.helper');
+require('./controllers/capmaign.cont')(pxl);
+app.get('/shortly/:linkId', pxl.redirect)
+
 
 app.use((err, req, res, next) => {
   // set locals, only providing error in development

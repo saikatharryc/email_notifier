@@ -26,6 +26,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "bull": "^3.5.2",
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "helmet": "^3.14.0",
@@ -33,6 +34,8 @@
     "mongoose": "^5.3.8",
     "mongoose-beautiful-unique-validation": "^7.1.1",
     "mongoose-unique-validator": "^2.0.2",
-    "nodemailer": "^4.6.8"
+    "nodemailer": "^4.6.8",
+    "pxl-for-emails": "0.0.3",
+    "pxl-mongodb": "0.0.5"
   }
 }
