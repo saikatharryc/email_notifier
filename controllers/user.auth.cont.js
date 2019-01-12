@@ -4,8 +4,6 @@ const Users = require("../models/User");
 
 const config = require("../config");
 
-const mailHelper = require("../helpers/mail.helper");
-
 const register = (body) => {
   return new Promise((resolve, reject) => {
     const savable = new Users(body);

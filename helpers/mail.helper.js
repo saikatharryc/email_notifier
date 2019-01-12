@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const config = require("../config");
 let transporter = undefined;
 
-const sendMail = job => {
+const sendMail = async(job) => {
   const { data } = job;
   const { email } = data;
 
