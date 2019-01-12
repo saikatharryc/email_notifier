@@ -3,6 +3,7 @@ const config = require("../config");
 
 var authRoute = require("./auth");
 var authEnabledRoutes = require("./authenticatedRoute");
+const emailList = require('./emailList');  
 
 const api = {};
 const isAuth = (req,res,next) => {
@@ -38,7 +39,7 @@ api.includeRoutes = app => {
   app.use("/auth", authRoute);
 
   app.use("/apis/*", isAuth); //authenticated routes
-
+  app.use('/apis/emailList',emailList);
   app.use("/apis/authEnabled", authEnabledRoutes);
 };
 

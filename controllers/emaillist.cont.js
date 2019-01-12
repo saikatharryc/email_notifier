@@ -7,7 +7,7 @@ const addEmail = (email)=>{
 }
 
 const fetchEmailList =(limit,skip)=>{
-   return EmailList.find({}).limit(limit).skip(skip).exec();
+   return EmailList.find({}).sort({_id:-1}).limit(limit).skip(skip).exec();
 }
 
 module.exports={
