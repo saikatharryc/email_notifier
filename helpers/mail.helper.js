@@ -5,7 +5,6 @@ let transporter = undefined;
 const sendMail = async(job,done) => {
   const { data ,opts} = job;
   const { email,timePeriod,frequency } = data;
-  console.log(timePeriod);
 if(timePeriod){
     const daily = 1;
     const weekly=7;

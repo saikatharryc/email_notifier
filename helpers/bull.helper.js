@@ -5,7 +5,6 @@ let removeOnComplete = true;
 
 
 bullSystem.initBull = function() {
-  console.log('Bull redis', Config.redisHost , Config.redisPort);
   const queue = new Bull('email_queue', {redis:{host:Config.redisHost,port:Config.redisPort}});
 
   bullSystem.bullJobs = queue;
@@ -50,7 +49,7 @@ bullSystem.initBull = function() {
 
   queue.on('active', job => {
     // log worker start
-    console.log("Worker active", job);
+    // console.log("Worker active", job);
   });
 
   queue.on('completed', (job, result) => {
