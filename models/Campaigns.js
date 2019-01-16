@@ -12,8 +12,8 @@ const CampaignSchema = new mongoose.Schema({
         type:String
     },
     usersSelected:{
-        city:String,
-        state:String
+        city:Array,
+        state:Array
     },
     frequency:{
         type:String,
