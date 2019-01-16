@@ -3,13 +3,13 @@ const router = express.Router();
 const emailListCont = require('../controllers/emaillist.cont');
 
 router.post("/addEmail", (req, res, next) => {
-    if(!req.body.email){
+    if(!req.body.email || !req.body.city || !req.body.state){
         return next({
             status:400,
-            message:"Email is required"
+            message:"fields are required"
         })
     }
-    emailListCont.addEmail(req.body.email).then(data=>{
+    emailListCont.addEmail(req.body).then(data=>{
         return res.json(data);
     }).catch(error=>{
         return next(error);
