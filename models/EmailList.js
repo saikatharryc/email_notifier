@@ -1,6 +1,15 @@
 const mongoose = require("mongoose");
 const Emailchema = new mongoose.Schema({
+   name:{
+    type:String
+   },
    email:{
+       type:String
+   },
+   city:{
+       type:String
+   },
+   state:{
        type:String
    }
 },{
