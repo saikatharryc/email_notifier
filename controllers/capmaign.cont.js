@@ -19,26 +19,38 @@ const addCampaign = (data) => {
 };
  const runCampaign = async (pxl,data) => {
   let updateCampaign = await Campaign.findOne({ _id: data._id }).exec();
-  (updateCampaign.frequency = data.frequency),
-    (updateCampaign.timePeriod = data.timePeriod),
-    (updateCampaign.state = "running");
     let query={}
-    if(updateCampaign.usersSelected.city!="all"){
-      query["city"] =updateCampaign.usersSelected.city;
+    let cityQuery ={}
+    let stateQuery ={}
+    const cpgStates =updateCampaign.usersSelected.state;
+    const cpgcities =updateCampaign.usersSelected.city;
+    if(cpgcities.indexOf('all') ==-1){
+      cityQuery['city']={$in :cpgcities}
     }
-    if(updateCampaign.usersSelected.state!="all"){
-      query["state"] =updateCampaign.usersSelected.state;
+    if(cpgStates.indexOf('all')==-1){
+      stateQuery['state']={$in :cpgStates}
+    }
+    if(Object.keys(cityQuery).length && Object.keys(stateQuery).length){
+          query["$or"]=[
+              cityQuery,stateQuery
+            ]
+          
+    }else if(Object.keys(cityQuery).length || Object.keys(stateQuery).length){
+      query=cityQuery.length ? cityQuery :stateQuery;
     }
    
 //if there is lots of docs, using MDB cursor it will fetch only one an a time, and go next.
  EmailList.find(query).select('email').cursor().
   on('data', async(doc)=> { 
       //construct email options 
-    await BullPusher.pushtobull(pxl,updateCampaign,doc.email);
-    // console.log(doc.email)
+    // await BullPusher.pushtobull(pxl,updateCampaign,doc.email);
+    console.log(doc.email)
    }).
   on('end', async()=> { 
     //change state of campaign r something
+    (updateCampaign.frequency = data.frequency),
+    (updateCampaign.timePeriod = data.timePeriod),
+    (updateCampaign.state = "running");
     await updateCampaign.save();
     // console.log("done")
    });
