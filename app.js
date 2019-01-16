@@ -18,7 +18,7 @@ const config = require('./config');
 let pxl = new Pxl({
   collectionPxls: 'pxls', 
   collectionLinks: 'links', 
-  alwaysShortenWithNewLinkId: true 
+  alwaysShortenWithNewLinkId: false 
 });
 
 mongoose.connect(
