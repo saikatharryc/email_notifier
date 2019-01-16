@@ -1,8 +1,8 @@
 const EmailList= require('../models/EmailList');
 
 
-const addEmail = (email)=>{
-    const savableObj = EmailList({email:email});
+const addEmail = (data)=>{
+    const savableObj = EmailList(data);
     return savableObj.save();
 }
 
