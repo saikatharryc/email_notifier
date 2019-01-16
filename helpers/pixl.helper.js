@@ -2,10 +2,9 @@ let PxlForEmails = require("pxl-for-emails");
 const { bullSystem } = require("./bull.helper");
 const config = require('../config')
 
-function pushtobull(pxl, campaigDetails) {
+function pushtobull(pxl, campaigDetails,i) {
   if (campaigDetails) {
     return new Promise(async (resolve, reject) => {
-      for (let i of campaigDetails.usersSelected) {
         let pxlForEmails = new PxlForEmails({
           pxl,
 
@@ -30,8 +29,8 @@ function pushtobull(pxl, campaigDetails) {
         const createdPxl = await pxl.createPxl(metadata);
         const createdPxlClick = await pxl.createPxl(metadataClick);
         let emailMarkup =
-          campaigDetails.template +
-          `<footer><img src='${config.API_BASE}/shortly/${
+          '<div>'+campaigDetails.template +
+          `</div><footer><img src='${config.API_BASE}/shortly/${
             link.linkId
           }?pxl=${createdPxl.pxl}' /><footer><a href='${config.API_BASE}/shortly/${
             link.linkId
@@ -50,11 +49,11 @@ function pushtobull(pxl, campaigDetails) {
           frequency:campaigDetails.frequency
         },campaigDetails.frequency);
         resolve();
-      }
+      
     });
   }
 }
 
 module.exports = {
-  pushtobull
+pushtobull
 };
