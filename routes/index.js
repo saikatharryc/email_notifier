@@ -1,12 +1,11 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
-var authRoute = require("./auth");
-var authEnabledRoutes = require("./authenticatedRoute");
-const emailList = require('./emailList');
-const campaign = require('./campaign');  
-const stats = require('./stats');
-const theaters = require("./theaters");
+const authRoute = require("./auth");
+const emailList = require('./v1/emailList');
+const campaign = require('./v1/campaign');  
+const stats = require('./v1/stats');
+const theaters = require("./v1/theaters");
 
 const api = {};
 const isAuth = (req,res,next) => {
@@ -40,13 +39,12 @@ const isAuth = (req,res,next) => {
 };
 api.includeRoutes = app => {
   app.use("/auth", authRoute);
-
-  app.use("/apis/*", isAuth); //authenticated routes
-  app.use('/apis/emailList',emailList);
-  app.use('/apis/campaign',campaign);
-  app.use('/apis/stats',stats);
-  app.use('/apis/theaters',theaters);
-  app.use("/apis/authEnabled", authEnabledRoutes);
+  
+  app.use("/api/v1/*", isAuth); //authenticated routes
+  app.use('/api/v1/emails',emailList);
+  app.use('/api/v1/campaigns',campaign);
+  app.use('/api/v1/stats',stats);
+  app.use('/api/v1/theaters',theaters);
 };
 
 module.exports = api;

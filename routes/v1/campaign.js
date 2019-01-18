@@ -3,7 +3,7 @@ const router = express.Router();
 const capmaignCont = require('../controllers/capmaign.cont');
 
 
-router.post('/createCampaign',(req,res,next)=>{
+router.post('/',(req,res,next)=>{
     const  data=  {
     campaignName: req.body.campaignName,
     template: req.body.template,
@@ -16,7 +16,7 @@ router.post('/createCampaign',(req,res,next)=>{
         });
 });
 
-router.get('/fetchCampaign',(req,res,next)=>{
+router.get('/',(req,res,next)=>{
   
     capmaignCont.fetchCampaigns().then(data=>{
             return res.json(data);
@@ -25,7 +25,7 @@ router.get('/fetchCampaign',(req,res,next)=>{
         });
 });
 
-router.post('/runCampaign',(req,res,next)=>{
+router.post('/run',(req,res,next)=>{
     const data={
         frequency:req.body.frequency,
         timePeriod:req.body.timePeriod,
