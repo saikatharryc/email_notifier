@@ -1,17 +1,22 @@
 const mongoose = require("mongoose");
 const Emailchema = new mongoose.Schema({
-   name:{
-    type:String
-   },
+
    email:{
        type:String
    },
-   city:{
-       type:String
+   location:{
+    city:String,
+    state:String
    },
-   state:{
-       type:String
+   profile:{
+    name:String
+   },
+   services:{
+       password:String,
+       authToken:String
+       //service related things goes here
    }
+   
 },{
     timestamps:true
 });

@@ -16,6 +16,14 @@ const UserSchema = new mongoose.Schema({
   emailVerified:{
     type:Boolean,
     default:false
+  },
+  profile:{
+    name:String,
+    sex:{
+      type:String,
+      enum:['M','F','T']
+    }
+    //etc everything about users goes here. 
   }
 });
 UserSchema.plugin(beautifyUnique, { message: 'Error, {PATH} already Exists.' });

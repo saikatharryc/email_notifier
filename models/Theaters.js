@@ -2,13 +2,19 @@ const mongoose = require("mongoose");
 const TheaterSchema = new mongoose.Schema({
    name:{
     type:String,
+   },
+   theaterId:{
+    type:String,
     unique:true
    },
-   city:{
-       type:String
+   location:{
+       city:String,
+       state:String
    },
-   state:{
-       type:String
+   metadata:{
+       organization:String,
+       openingTime:String,
+       closingTime:String
    }
 });
 
