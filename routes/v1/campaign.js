@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const capmaignCont = require('../controllers/capmaign.cont');
+const capmaignCont = require('../../controllers/capmaign.cont');
 
 
 router.post('/',(req,res,next)=>{

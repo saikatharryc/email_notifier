@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const theaterCont = require('../controllers/theater.cont');
+const theaterCont = require('../../controllers/theater.cont');
 
 router.post("/", (req, res, next) => {
     if(!req.body.name || !req.body.city || !req.body.state){

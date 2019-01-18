@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const statCont = require('../controllers/stats.cont');
+const statCont = require('../../controllers/stats.cont');
 
 router.get('/',(req,res,next)=>{
     statCont.getStats().then(data=>{
