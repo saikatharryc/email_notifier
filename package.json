@@ -35,7 +35,7 @@
     "mongoose": "^5.3.8",
     "mongoose-beautiful-unique-validation": "^7.1.1",
     "mongoose-unique-validator": "^2.0.2",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.1.1",
     "pxl-for-emails": "0.0.3",
     "pxl-mongodb": "0.0.5"
   }
