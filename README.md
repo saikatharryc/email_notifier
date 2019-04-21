@@ -1,5 +1,7 @@
 # email_notifier
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/saikatharryc/email_notifier.svg)](https://greenkeeper.io/)
+
 ## Install:
   Required: 
       * Mongo instance
